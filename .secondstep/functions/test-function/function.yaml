@@ -1,4 +1,4 @@
-#function.yaml
+#function.yaml test
 validateEmailAddress:
   describe:
     summary: Validate email addresses from input data
