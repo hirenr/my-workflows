@@ -30,7 +30,7 @@ do:
       call: http
       export:
         as:
-          homeworld: ${ .homeworld.name }
+          homeworld: ${ .name }
       with:
         method: get
         endpoint: ${ $context.homeworld }
