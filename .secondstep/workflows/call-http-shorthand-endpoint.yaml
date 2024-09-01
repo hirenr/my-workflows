@@ -8,7 +8,7 @@ do:
   - getPet:
       call: http
       export:
-        as: ${ .+ { ($task.name): $output } }
+        as: "${ .+ { ($task.name): $output } }"
       with:
         method: get
         endpoint: https://petstore.swagger.io/v2/pet/{petId}
