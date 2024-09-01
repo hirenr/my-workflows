@@ -28,6 +28,9 @@ do:
           homeworld: ${ .content.homeworld }
   - getStarWarsHomeworld:
       call: http
+      export:
+        as:
+          homeworld: ${ . }
       with:
         method: get
         endpoint: ${ $context.homeworld }
