@@ -9,8 +9,8 @@ do:
         to:
           one:
             with:
-              type: test
-              source: test
+              type: test.result
+              source: test.agency
             correlate:
               testId:
                 from: .testId
