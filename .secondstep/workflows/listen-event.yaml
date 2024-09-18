@@ -4,7 +4,7 @@ document:
   name: listen-event
   version: 1.0.0-alpha1
 do:
-  - getPet:
+  - getTests:
       listen:
         to:
           one:
