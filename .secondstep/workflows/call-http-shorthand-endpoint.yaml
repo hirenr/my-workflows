@@ -10,7 +10,7 @@ use:
       endpoint: file:///functions
 do:
   - callTest:
-      call: test:1.0.0@file:///functions
+      call: test:1.0.0@workspace
   # - setInput:
   #     set:
   #       message: Hello World

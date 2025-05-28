@@ -3,5 +3,5 @@ describe:
   summary: Validate email addresses from input data
 do:
   - step1:
-      call: https://raw.githubusercontent.com/hirenr/my-workflows/refs/heads/main/.secondstep/functions/nested/1.0.1/function.yaml
+      call: https://raw.githubusercontent.com/hirenr/my-workflows/refs/heads/main/.secondstep/functions/nested/1.0.0/function.yaml
 

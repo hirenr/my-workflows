@@ -15,8 +15,8 @@ do:
         from: ${ .message }
       run:
         container:
-          image: alpine
-          command: 'echo "Arg1: $1, Arg2: $2"'
-          arguments:
-          - Hello
-          - World
+          image: hello-world
+          # command: 'echo "Arg1: $1, Arg2: $2"'
+          # arguments:
+          # - Hello
+          # - World
