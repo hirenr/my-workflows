@@ -1,26 +1,10 @@
 #function.yaml test
-validateEmailAddress:
-  describe:
-    summary: Validate email addresses from input data
-  input:
-    schema:
-      type: object
-      properties:
-        emailAddress:
-          type: string
-  output:
-    schema:
-      type: object
-      properties:
-        isValid:
-          type: boolean
-  run:
-    script:
-      type: javascript
-      source: |
-        function validateEmail(email) {
-          const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-          return re.test(email);
-        }
-        const emailAddress = '${ .emailAddress }';
-        return { isValid: validateEmail(emailAddress) };
+describe:
+  summary: Validate email addresses from input data
+do:
+  - step1:
+      set:
+        foo: bar
+  - step2:
+      set:
+        foo2: bar2

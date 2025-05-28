@@ -4,10 +4,16 @@ document:
   namespace: examples
   name: call-script-input-type-example
   version: 1.0.0-alpha1
+use:
+  catalogs:
+    test:
+      endpoint: https://thisisacustomendpoint
 do:
-  - setInput:
-      set:
-        message: Hello World
+  - callTest:
+      call: file:///functions/test-function/function.yaml
+  # - setInput:
+  #     set:
+  #       message: Hello World
   # - runShell:
   #     input:
   #       from: ${ .message }
@@ -33,16 +39,16 @@ do:
   #         - Hello
   #         - World
             
-  - runScript:
-      # output: 
-      #   as: "${ fromjson }"
-      run:
-        return: all
-        script:
-          language: javascript
-          environment:
-           url: https://petstore.swagger.io/v2/pet/2
-          arguments:
-          - https://petstore.swagger.io/v2/pet/2
-          source:
-            endpoint: file:///scripts/hello_world.js
+  # - runScript:
+  #     # output: 
+  #     #   as: "${ fromjson }"
+  #     run:
+  #       return: all
+  #       script:
+  #         language: javascript
+  #         environment:
+  #          url: https://petstore.swagger.io/v2/pet/2
+  #         arguments:
+  #         - https://petstore.swagger.io/v2/pet/2
+  #         source:
+  #           endpoint: file:///scripts/hello_world.js
