@@ -1,14 +1,48 @@
 #2Test file122312222wea ok
 document:
-  dsl: 1.0.0-alpha1
+  dsl: 1.0.0
   namespace: examples
-  name: call-http-shorthand-endpoint
+  name: call-script-input-type-example
   version: 1.0.0-alpha1
 do:
-  - getPet:
-      call: http
-      export:
-        as: "${ .+ { ($task.name): $output } }"
-      with:
-        method: get
-        endpoint: https://petstore.swagger.io/v2/pet/{petId}
+  - setInput:
+      set:
+        message: Hello World
+  # - runShell:
+  #     input:
+  #       from: ${ .message }
+  #     run:
+  #       shell:
+  #         command: |
+  #           input=$(cat)
+  #           echo "STDIN was: $input"
+  #           echo "ARGS are $1 $2"
+  #         arguments:
+  #         - Hello
+  #         - World
+  # - runContainer:
+  #     # output: 
+  #     #   as: "${ fromjson }"
+  #     input:
+  #       from: ${ .message }
+  #     run:
+  #       container:
+  #         image: alpine
+  #         command: 'echo "Arg1: $1, Arg2: $2"'
+  #         arguments:
+  #         - Hello
+  #         - World
+            
+  - runScript:
+      # output: 
+      #   as: "${ fromjson }"
+      run:
+        return: all
+        script:
+          language: javascript
+          environment:
+           url: https://petstore.swagger.io/v2/pet/2
+          arguments:
+          - https://petstore.swagger.io/v2/pet/2
+          source:
+            endpoint: file:///scripts/hello_world.js
