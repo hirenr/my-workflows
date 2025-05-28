@@ -1,4 +1,4 @@
-#function.yaml test
+#function.yaml test 1
 describe:
   summary: Validate email addresses from input data
 do:
