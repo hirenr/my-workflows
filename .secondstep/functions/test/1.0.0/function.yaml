@@ -3,8 +3,5 @@ describe:
   summary: Validate email addresses from input data
 do:
   - step1:
-      set:
-        foo: bar
-  - step2:
-      set:
-        foo2: bar2
+      call: file:///functions/nested/1.0.0/function.yaml
+

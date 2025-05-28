@@ -10,7 +10,7 @@ use:
       endpoint: https://thisisacustomendpoint
 do:
   - callTest:
-      call: file:///functions/test-function/function.yaml
+      call: file:///functions/test/1.0.0/function.yaml
   # - setInput:
   #     set:
   #       message: Hello World
