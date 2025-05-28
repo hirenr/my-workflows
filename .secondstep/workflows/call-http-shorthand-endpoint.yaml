@@ -6,11 +6,11 @@ document:
   version: 1.0.0-alpha1
 use:
   catalogs:
-    test:
-      endpoint: https://thisisacustomendpoint
+    workspace:
+      endpoint: file:///functions
 do:
   - callTest:
-      call: file:///functions/test/1.0.0/function.yaml
+      call: test:1.0.0@file:///functions
   # - setInput:
   #     set:
   #       message: Hello World

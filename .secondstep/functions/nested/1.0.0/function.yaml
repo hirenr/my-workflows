@@ -1,0 +1,22 @@
+#function.yaml test
+describe:
+  summary: Validate email addresses from input data
+do:
+  - step1:
+      set:
+        foo: bar
+  - step2:
+      set:
+        foo2: bar2
+  - runContainer:
+      # output: 
+      #   as: "${ fromjson }"
+      input:
+        from: ${ .message }
+      run:
+        container:
+          image: alpine
+          command: 'echo "Arg1: $1, Arg2: $2"'
+          arguments:
+          - Hello
+          - World
