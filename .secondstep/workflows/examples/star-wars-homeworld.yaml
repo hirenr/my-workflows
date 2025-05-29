@@ -2,7 +2,7 @@
 document:
   dsl: 1.0.0
   namespace: examples
-  name: star-wars-homeplanet
+  name: star-wars-homeworld
   version: 1.0.0
 input:
   schema:
