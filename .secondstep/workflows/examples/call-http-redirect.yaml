@@ -2,7 +2,7 @@
 document:
   dsl: '1.0.0'
   namespace: examples
-  name: http-query-params
+  name: call-http-redirect
   version: '1.0.0'
 input:
   schema:
