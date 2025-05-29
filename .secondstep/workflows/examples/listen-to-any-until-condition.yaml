@@ -1,7 +1,7 @@
 document:
   dsl: '1.0.0'
   namespace: test
-  name: listen-to-any
+  name: listen-to-any-until-condition
   version: '0.1.0'
 do:
   - callDoctor:
