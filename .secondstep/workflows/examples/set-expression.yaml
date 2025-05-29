@@ -1,6 +1,6 @@
 document:
   dsl: '1.0.0'
-  namespace: test
+  namespace: set-expression
   name: set
   version: '0.1.0'
 schedule:
