@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://serverlessworkflow.io/schemas/1.0.0-alpha2/workflow.yaml
 document:
-  dsl: 1.0.0-alpha2
+  dsl: 1.0.0
   namespace: examples
   name: star-wars-homeplanet
   version: 1.0.0-alpha2
@@ -10,9 +10,9 @@ input:
     document:
       type: object
       required:
-        - id
+        - petId
       properties:
-        id:
+        petId:
           type: integer
           description: The id of the star wars character to get
           minimum: 1
@@ -21,7 +21,7 @@ do:
       call: http
       with:
         method: get
-        endpoint: https://swapi.dev/api/people/{id}
+        endpoint: https://swapi.dev/api/people/{petId}
         output: response
       export:
         as:
