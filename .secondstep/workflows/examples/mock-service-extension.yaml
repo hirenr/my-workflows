@@ -1,7 +1,7 @@
 document:
   dsl: '1.0.0'
   namespace: test
-  name: sample-workflow
+  name: mock-service-extension
   version: 0.1.0
 use:
   extensions:
