@@ -5,6 +5,7 @@ document:
   version: '0.1.0'
 do:
   - getPet:
+      if: ${ false }
       call: http
       with:
         method: get

@@ -5,7 +5,15 @@ document:
   version: '0.1.0'
 do:
   - raiseErrorIfUnderage:
-      if: .customer.age < 18
+      if: ${ .customer.age < 18 }
+      raise:
+        error:
+          type: https://superbet-casinos.com/customer/access-forbidden
+          status: 400
+          title: Access Forbidden
+      then: end
+  - raiseErrorIfOverage:
+      if: ${ .customer.age > 40 }
       raise:
         error:
           type: https://superbet-casinos.com/customer/access-forbidden
@@ -15,8 +23,19 @@ do:
   - placeBet:
       call: http
       with:
-        method: post
-        endpoint: https://superbet-casinos.com/api/bet/on/football
-        body:
-          customer: .customer
-          bet: .bet
+        method: get
+        endpoint: "https://ifconfig.io/all.json"
+  - raiseErrorIfOverag2:
+      if: '${ .country_code != "IN" }'
+      raise:
+        error:
+          type: https://superbet-casinos.com/customer/access-forbidden
+          status: 400
+          detail: Only IP's from India allowed
+          title: Access Forbidden
+      then: end
+  - getBet:
+      call: http
+      with:
+        method: get
+        endpoint: "https://ifconfig.io/all.json"

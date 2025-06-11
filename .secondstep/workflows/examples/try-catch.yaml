@@ -12,7 +12,14 @@ do:
               method: get
               endpoint: https://petstore.swagger.io/v2/pet/{petId}
       catch:
+        do:
+          - parseError:
+              set:
+                error1: ${ $error }
         errors:
           with:
             type: https://serverlessworkflow.io/spec/1.0.0/errors/communication
             status: 404
+  - setPet:
+      set:
+        hi: 123

@@ -9,7 +9,8 @@ do:
       with:
         method: get
         endpoint:
-          uri: https://petstore.swagger.io/v2/pet/1
-          authentication:
-            bearer:
-              token: ${ .token }
+          uri: https://ifconfig.io/all.json
+          # uri: https://petstore.swagger.io/v2/pet/1
+          # authentication:
+          #   bearer:
+          #     token: ${ .token }

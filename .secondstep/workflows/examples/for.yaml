@@ -11,6 +11,9 @@ do:
         at: index
       while: .vet != null
       do:
+        - setData:
+            set:
+              foo: bar
         - waitForCheckup:
             listen:
               to:
