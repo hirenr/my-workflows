@@ -31,9 +31,9 @@ do:
               export:
                 as: '${ $context + { error: $error } }'
   - buyPet:
-      if: $context.error == null
+      if: ${ $context.error == null }
       call: http
       with:
-        method: put
+        method: post
         endpoint: https://petstore.swagger.io/v2/pet/{petId}
         body: '${ . + { status: "sold" } }'

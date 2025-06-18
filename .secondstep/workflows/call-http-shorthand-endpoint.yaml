@@ -9,44 +9,58 @@ use:
     workspace:
       endpoint: file:///functions
 do:
-  - callTest:
-      call: nested:1.0.0@workspace
-  - runShell:
-      input:
-        from: ${ $context }
-      run:
-        shell:
-          command: |
-            input=$(cat)
-            echo "STDIN was: $input"
-            echo "ARGS are $1 $2"
-          arguments:
-          - Hello
-          - World
   - runContainer:
-      # output: 
-      #   as: "${ fromjson }"
+      describe:
+        summary: Validate email addresses from input data
       input:
-        from: ${ $context }
+        schema:
+          format: json
+          document:
+            type: string
+            minLength: 1
       run:
         container:
-          image: alpine
-          command: 'echo "Arg1: $1, Arg2: $2"'
-          arguments:
-          - Hello
-          - World
-            
-  - runScript:
-      # output: 
-      #   as: "${ fromjson }"
-      input:
-        from: ${ $context }
-      run:
-        script:
-          language: javascript
+          image: alpine/psql
+          # command: >
+          #   /usr/bin/psql postgresql://postgres:postgres@host.docker.internal:5432/secondstep
+          command: >
+            /bin/sh -c "psql $PSQL_CONNECTION_STRING -t -A"
           environment:
-           url: https://petstore.swagger.io/v2/pet/2
-          arguments:
-          - https://petstore.swagger.io/v2/pet/2
-          source:
-            endpoint: file:///scripts/hello_world.js
+            PSQL_CONNECTION_STRING: 'postgresql://postgres:postgres@host.docker.internal:5432/secondstep'
+  # - callTest:
+  #     call: nested:1.0.0@workspace
+  # - runShell:
+  #     run:
+  #       shell:
+  #         command: |
+  #           input=$(cat)
+  #           echo "STDIN was: $input"
+  #           echo "ARGS are $1 $2"
+  #         arguments:
+  #         - Hello
+  #         - World
+  # - runContainer:
+  #     # output: 
+  #     #   as: "${ fromjson }"
+  #     run:
+  #       container:
+  #         image: alpine
+  #         command: 'echo "Arg1: $1, Arg2: $2"'
+  #         arguments:
+  #         - Hello
+  #         - World
+            
+  # - runScript:
+  #     # output: 
+  #     #   as: "${ fromjson }"
+  #     input:
+  #       from: ${ $context }
+  #     run:
+  #       script:
+  #         language: javascript
+  #         environment:
+  #          url: https://petstore.swagger.io/v2/pet/2
+  #         arguments:
+  #         - https://petstore.swagger.io/v2/pet/2
+  #         source:
+  #           endpoint: file:///scripts/hello_world.js

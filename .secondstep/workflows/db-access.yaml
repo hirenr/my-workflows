@@ -1,0 +1,18 @@
+document:
+  dsl: 1.0.0
+  namespace: examples
+  name: access-pgdb-example-1
+  version: 1.0.0
+use:
+  catalogs:
+    workspace:
+      endpoint: file:///functions
+do:
+  - runContainer:
+      run:
+        container:
+          image: alpine/psql
+          command: >
+            /bin/sh -c "psql $PSQL_CONNECTION_STRING -t -A"
+          environment:
+            PSQL_CONNECTION_STRING: "postgresql://postgres:postgres@host.docker.internal:5432/secondstep"
