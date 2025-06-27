@@ -3,11 +3,11 @@ document:
   namespace: samples
   name: call-custom-function-cataloged
   version: '0.1.0'
+use:
+  secrets:
+    - app.secondstep.integration.whoami
 do:
   - log:
-      call: https://raw.githubusercontent.com/serverlessworkflow/catalog/main/functions/log/1.0.0/function.yaml
+      call: https://hirenr.github.io/secondstep-integrations/integrations/whoami/functions/main/1.0.0/function.yaml
       with:
-        message: Hello, world!
-        level: information
-        timestamp: true
-        format: '{TIMESTAMP} [{LEVEL}] ({CONTEXT}): {MESSAGE}'
+        authToken: ${ . }

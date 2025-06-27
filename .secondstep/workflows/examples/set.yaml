@@ -3,7 +3,13 @@ document:
   namespace: test
   name: set
   version: '0.1.0'
+use:
+  # catalogs:
+  #   app.secondstep.integration.whoami:
+  #     endpoint: https://hirenr.github.io/secondstep-integrations/integrations/whoami/functions
+  secrets:
+    - mySecret
+    - app.secondstep.integration.whoami
 do:
-  - initialize:
-      set:
-        startEvent: hi
+  - callWhoami:
+      call: "app.secondstep.integration.whoami.main:1.0.0@default"

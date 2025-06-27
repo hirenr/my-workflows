@@ -5,28 +5,30 @@ document:
   name: call-script-input-type-example
   version: 1.0.0-alpha1
 use:
+  secrets:
+    - anthropic_api_key
   catalogs:
     workspace:
       endpoint: file:///functions
 do:
-  - runContainer:
-      describe:
-        summary: Validate email addresses from input data
-      input:
-        schema:
-          format: json
-          document:
-            type: string
-            minLength: 1
-      run:
-        container:
-          image: alpine/psql
-          # command: >
-          #   /usr/bin/psql postgresql://postgres:postgres@host.docker.internal:5432/secondstep
-          command: >
-            /bin/sh -c "psql $PSQL_CONNECTION_STRING -t -A"
-          environment:
-            PSQL_CONNECTION_STRING: 'postgresql://postgres:postgres@host.docker.internal:5432/secondstep'
+  # - runContainer:
+  #     describe:
+  #       summary: Validate email addresses from input data
+  #     input:
+  #       schema:
+  #         format: json
+  #         document:
+  #           type: string
+  #           minLength: 1
+      # run:
+      #   container:
+      #     image: alpine/psql
+      #     # command: >
+      #     #   /usr/bin/psql postgresql://postgres:postgres@host.docker.internal:5432/secondstep
+      #     command: >
+      #       /bin/sh -c "psql $PSQL_CONNECTION_STRING -t -A"
+      #     environment:
+      #       PSQL_CONNECTION_STRING: 'postgresql://postgres:postgres@host.docker.internal:5432/secondstep'
   # - callTest:
   #     call: nested:1.0.0@workspace
   # - runShell:
@@ -50,17 +52,15 @@ do:
   #         - Hello
   #         - World
             
-  # - runScript:
-  #     # output: 
-  #     #   as: "${ fromjson }"
-  #     input:
-  #       from: ${ $context }
-  #     run:
-  #       script:
-  #         language: javascript
-  #         environment:
-  #          url: https://petstore.swagger.io/v2/pet/2
-  #         arguments:
-  #         - https://petstore.swagger.io/v2/pet/2
-  #         source:
-  #           endpoint: file:///scripts/hello_world.js
+  - runScript:
+      # output: 
+      #   as: "${ fromjson }"
+      input:
+        from: ${ $context }
+      run:
+        script:
+          language: javascript
+          environment:
+           ANTHROPIC_API_KEY: ${ $secrets.anthropic_api_key}
+          source:
+            endpoint: scripts/hello_world.js
